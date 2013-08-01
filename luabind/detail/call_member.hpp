@@ -374,10 +374,11 @@ typename detail::make_member_proxy<R, Args...>::type call_member(
 
 #endif // LUABIND_CALL_MEMBER_HPP_INCLUDED
 
-#elif BOOST_PP_ITERATION_FLAGS() == 1
+#else
+#if BOOST_PP_ITERATION_FLAGS() == 1
 
-#define LUABIND_TUPLE_PARAMS(z, n, data) const A##n *
-#define LUABIND_OPERATOR_PARAMS(z, n, data) const A##n & a##n
+# define LUABIND_TUPLE_PARAMS(z, n, data) const A##n *
+# define LUABIND_OPERATOR_PARAMS(z, n, data) const A##n & a##n
 
 	template<class R BOOST_PP_COMMA_IF(BOOST_PP_ITERATION()) BOOST_PP_ENUM_PARAMS(BOOST_PP_ITERATION(), class A)>
 	typename boost::mpl::if_<boost::is_void<R>
@@ -418,4 +419,4 @@ typename detail::make_member_proxy<R, Args...>::type call_member(
 #undef LUABIND_TUPLE_PARAMS
 
 #endif
-
+#endif
