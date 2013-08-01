@@ -50,7 +50,7 @@ namespace luabind { namespace detail
 #if LUA_VERSION_NUM >= 501
 		// Lua 5.1 added  LUA_YIELD as a possible return value,
 		// this was causing crashes, because the caller expects 0 on success.
-		int res = lua_resume(L, nargs);
+          int res = -1;//lua_resume(L, nargs); // TODO
 		return (res == LUA_YIELD) ? 0 : res;
 #else
 		return lua_resume(L, nargs);
